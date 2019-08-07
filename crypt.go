@@ -27,6 +27,18 @@ type CryptOptConfig struct {
 	Layers    []int32
 }
 
+func WithPlatforms(platforms []string) CryptOpt {
+	return func(ctx context.Context, c *CryptOptConfig) {
+		c.Platforms = platforms
+	}
+}
+
+func WithLayers(layers []int32) CryptOpt {
+	return func(ctx context.Context, c *CryptOptConfig) {
+		c.Layers = layers
+	}
+}
+
 func (c *CryptoClient) EncryptImage(ctx context.Context, image containerd.Image, name string, config *encconfig.CryptoConfig, opts ...CryptOpt) (containerd.Image, error) {
 	var optConfig CryptOptConfig
 	for _, o := range opts {

@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-package cryptd
+package main
 
 import (
 	gocontext "context"
